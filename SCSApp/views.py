@@ -17,3 +17,6 @@ def user_management(request):
 
 def student_management(request):
     return render(request, 'dashboard/student-management.html')
+
+def student_record(request):
+    return render(request, 'dashboard/student-record.html')

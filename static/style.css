@@ -225,7 +225,7 @@ nav .nav ul{
 
 .cards .fa-users, .fa-money, .fa-user, .fa-list, .fa-user-circle, 
 .nav .fa-users, .fa-money, .fa-user, .fa-lock, .fa-id-card,
-.fa-building, .fa-id-badge, .fa-calendar, .fa-phone{
+.fa-building, .fa-id-badge, .fa-calendar, .fa-phone, .fa-envelope{
     background-color: rgba(2, 96, 2, 0.555);
     color: #fff;
     padding: 20px;
@@ -235,4 +235,37 @@ nav .nav ul{
     background-color: rgba(155, 4, 4, 0.737);
     color: #fff;
     padding: 20px;
+}
+
+.table{
+    background-color: #fff;
+    z-index: 100;
+    width: 60%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: 50vh;
+    overflow: scroll;
+}
+
+/* table {
+    margin: 200px 0 30px 10px;
+} */
+
+td select{
+    background-color: red;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    font-size: 20px;
+    border-radius: 7px;
+}
+
+thead{
+    background-color: rgb(133, 132, 132);
+}
+
+table, tbody, thead, th, td{
+    border: 1px solid rgb(197, 197, 197);
+    border-collapse: collapse;
+    padding: 10px 30px 10px 30px;
 }
