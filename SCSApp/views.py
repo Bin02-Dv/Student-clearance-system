@@ -5,3 +5,15 @@ from django.http import HttpResponse
 
 def login(request):
     return render(request, 'forms/login.html')
+
+def sign_up(request):
+    return render(request, 'forms/sign-up.html')
+
+def dashboard(request):
+    return render(request, 'dashboard/dashboard.html')
+
+def user_management(request):
+    return render(request, 'dashboard/user-management.html')
+
+def student_management(request):
+    return render(request, 'dashboard/student-management.html')

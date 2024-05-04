@@ -1,6 +1,8 @@
 *{
     margin: 0;
     font-family: sans-serif;
+    text-decoration: none;
+    color: black;
 }
 
 .container{
@@ -20,6 +22,7 @@
 
 h2, .row, .btn{
     margin-bottom: 10px;
+    z-index: 1000;
 }
 
 .row{
@@ -73,15 +76,163 @@ input[type="checkbox"]{
 
 .link a{
     text-decoration: none;
-    color: dodgerblue;
+    color: rgb(5, 107, 209);
 }
 
 .form{
-    background-color: rgba(2, 96, 2, 0.156);
+    background-color: rgba(2, 96, 2, 0.457);
     padding: 50px 100px 50px 100px;
     border-radius: 9px;
+    z-index: 1000;
+}
+
+.form-signUp{
+    background-color: rgba(2, 96, 2, 0.457);
+    padding: 50px 100px 50px 100px;
+    border-radius: 9px;
+    height: 70vh;
+    overflow-x: hidden;
+    z-index: 1000;
 }
 
 form{
     margin-left: -50px;
+}
+
+.mom-logo{
+    position: absolute;
+}
+
+.logo{
+    background-color: rgba(2, 96, 2);
+    height: 50vh;
+    width: 100vw;
+    text-align: center;
+    opacity: .2;
+}
+.logo img{
+    border-radius: 50%;
+}
+
+/* Dashboard */
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: fixed;
+    width: 100%;
+    background-color: rgba(2, 96, 2, 0.457);
+    font-size: 19px;
+    font-weight: 500;
+    height: 10vh;
+    z-index: 1000;
+}
+
+header ul li img{
+    border-radius: 50%;
+}
+
+ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+    padding: 9px;
+}
+
+nav{
+    position: absolute;
+    left: 0; right: 0;
+    display: none;
+}
+
+nav .nav{
+    background-color: rgba(1, 136, 1, 0.97);
+    height: calc(100vh - 10vh);
+    width: 400px;
+    overflow-x: hidden;
+    margin-top: 100.5px;
+    position: fixed;
+    z-index: 1000;
+}
+
+nav .nav ul a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+}
+
+nav .nav ul{
+    margin-top: 10px;
+    background-color: rgba(2, 96, 2, 0.39);
+}
+
+.nav div{
+    text-align: right;
+    padding: 10px;
+}
+
+.show{
+    display: block;
+}
+
+.nav div span{
+    cursor: pointer;
+    border: 1px solid white;
+    padding: 5px 10px 5px 10px;
+}
+
+.body-section .dash{
+    top: 200px;
+}
+
+
+.body-content{
+    position: absolute;
+    left: 0; right: 0;
+    top: 110px;
+    background-color: rgba(2, 96, 2, 0.555);
+    height: 70vh;
+    margin: 10px;
+    padding: 10px;
+    /* z-index: 1000; */
+}
+
+.body-content .body .cards{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.body-content .body .card{
+    background-color: #fff;
+    height: 50px;
+    margin-bottom: 9px;
+    width: 25rem;
+    margin: 9px;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 100;
+}
+
+.cards .fa-users, .fa-money, .fa-user, .fa-list, .fa-user-circle, 
+.nav .fa-users, .fa-money, .fa-user, .fa-lock, .fa-id-card,
+.fa-building, .fa-id-badge, .fa-calendar, .fa-phone{
+    background-color: rgba(2, 96, 2, 0.555);
+    color: #fff;
+    padding: 20px;
+}
+
+.fa-power-off{
+    background-color: rgba(155, 4, 4, 0.737);
+    color: #fff;
+    padding: 20px;
 }

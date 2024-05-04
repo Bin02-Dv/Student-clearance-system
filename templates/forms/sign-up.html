@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="mom-logo">
+            <div class="logo">
+                <img src="{% static 'img/logo.jpeg' %}" alt="">
+            </div>
+        </div>
+        <h2>SIGN UP</h2>
+        <div class="form-signUp">
+            <form action="" method="post">
+                <div class="row">
+                    <input type="text" name="" id="" placeholder="Enter your Full Name" required>
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="row">
+                    <input type="text" name="" id="" placeholder="Enter your Matric No." required>
+                    <i class="fa fa-id-card"></i>
+                </div>
+                <div class="row">
+                    <input type="text" name="" id="" placeholder="Enter your Department" required>
+                    <i class="fa fa-building"></i>
+                </div>
+                <div class="row">
+                    <input type="text" name="" id="" placeholder="Enter your Jamb No." required>
+                    <i class="fa fa-id-badge"></i>
+                </div>
+                <div class="row">
+                    <input type="text" name="" id="" placeholder="Current Date"  required>
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <div class="row">
+                    <input type="number" name="" id="" placeholder="Year Admitted" required>
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <div class="row">
+                    <input type="text" name="" id="" placeholder="Enter your Phone No." required>
+                    <i class="fa fa-phone"></i>
+                </div>
+                <div class="row">
+                    <input type="password" name="" id="" placeholder="Enter your Password" required>
+                    <i class="fa fa-lock"></i>
+                </div>
+                <div class="row">
+                    <input type="password" name="" id="" placeholder="Confirm your Password" required>
+                    <i class="fa fa-lock"></i>
+                </div>
+                <div class="btn">
+                    <div>
+                        <input type="checkbox" name="" id="">
+                        <span>Remember Me</span>
+                    </div>
+                    <button>Sign Up</button>
+                </div>
+                <div class="link">
+                    <span>Already have an Account</span> <a href="/">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
