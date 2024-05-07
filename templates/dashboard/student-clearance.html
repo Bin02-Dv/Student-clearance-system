@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Student Management</title>
+    <title>Dashboard - Student Clearance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
@@ -67,16 +67,32 @@
                     <a href="/dashboard">
                         <h2>Dashboard</h2>
                     </a>
-                    <h2>STUDENT MANAGEMENT</h2>
+                    <h2>STUDENT CLEARANCE</h2>
                     <div class="cards">
-                        <div class="card">
-                            <i class="fa fa-user-circle"></i>
-                            &nbsp;
-                            <span>
-                                <a href="/student-record">
-                                    <strong>Students Record</strong>
-                                </a>
-                            </span>
+                        <div class="table">
+                            <table>
+                                <thead>
+                                    <th>S/N</th>
+                                    <th>Clearance For</th>
+                                    <th>Matric No.</th>
+                                    <th>Status</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Libary</td>
+                                        <td>CSE/20/0137</td>
+                                        <td>
+                                            <a href="">
+                                                <i class="fa fa-close"></i>
+                                            </a><br>
+                                            <a href="">
+                                                <i class="fa fa-print"></i>
+                                            </a><br>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

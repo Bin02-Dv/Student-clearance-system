@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Student Management</title>
+    <title>Dashboard - Clearance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
@@ -67,14 +67,32 @@
                     <a href="/dashboard">
                         <h2>Dashboard</h2>
                     </a>
-                    <h2>STUDENT MANAGEMENT</h2>
+                    <h2>CLEARANCE</h2>
                     <div class="cards">
                         <div class="card">
-                            <i class="fa fa-user-circle"></i>
+                            <i class="fa fa-check"></i>
                             &nbsp;
                             <span>
-                                <a href="/student-record">
-                                    <strong>Students Record</strong>
+                                <a href="/cleared-student">
+                                    <strong>Cleared Students</strong>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="card">
+                            <i class="fa fa-close"></i>
+                            &nbsp;
+                            <span>
+                                <a href="/uncleared-student">
+                                    <strong>Uncleared Students</strong>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="card">
+                            <i class="fa fa-check"></i>
+                            &nbsp;
+                            <span>
+                                <a href="/student-clearance">
+                                    <strong>Student Clearance</strong>
                                 </a>
                             </span>
                         </div>

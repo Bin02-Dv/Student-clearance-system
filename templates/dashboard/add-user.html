@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Student Management</title>
+    <title>Dashboard - User Management - Add User</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
@@ -67,17 +67,40 @@
                     <a href="/dashboard">
                         <h2>Dashboard</h2>
                     </a>
-                    <h2>STUDENT MANAGEMENT</h2>
-                    <div class="cards">
-                        <div class="card">
-                            <i class="fa fa-user-circle"></i>
-                            &nbsp;
-                            <span>
-                                <a href="/student-record">
-                                    <strong>Students Record</strong>
-                                </a>
-                            </span>
-                        </div>
+                    <h2>ADD USER</h2>
+                    <div class="form">
+                        <form action="" method="post" class="form-data">
+                            <div class="row">
+                                <input type="text" name="" id="" placeholder="Full Name" required>
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="row">
+                                <input type="email" name="" id="" placeholder="Email..." required>
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="row">
+                                <select name="" id="" required>
+                                    <option value="">Select Role</option>
+                                    <option value="Registrer">Registrer</option>
+                                    <option value="Bursary">Bursary</option>
+                                    <option value="H.O.D">H.O.D</option>
+                                    <option value="Library">Library</option>
+                                    <option value="Hostel">Hostel</option>
+                                </select>
+                                <i class="fa fa-user-circle"></i>
+                            </div>
+                            <div class="row">
+                                <input type="password" name="" id="" placeholder="Enter a Password" required>
+                                <i class="fa fa-lock"></i>
+                            </div>
+                            <div class="row">
+                                <input type="password" name="" id="" placeholder="Confirm a Password" required>
+                                <i class="fa fa-lock"></i>
+                            </div>
+                            <div class="btn">
+                                <button>Add user</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Student Management</title>
+    <title>Dashboard - User Records</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
@@ -67,16 +67,31 @@
                     <a href="/dashboard">
                         <h2>Dashboard</h2>
                     </a>
-                    <h2>STUDENT MANAGEMENT</h2>
+                    <h2>USER RECORDS</h2>
                     <div class="cards">
-                        <div class="card">
-                            <i class="fa fa-user-circle"></i>
-                            &nbsp;
-                            <span>
-                                <a href="/student-record">
-                                    <strong>Students Record</strong>
-                                </a>
-                            </span>
+                        <div class="table">
+                            <table>
+                                <thead>
+                                    <th>S/N</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Alamin Bin Ahmad</td>
+                                        <td>alaminbinahmad78@gmail.com</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <a href="">
+                                                <i class="fa fa-trash"></i>
+                                            </a><br>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

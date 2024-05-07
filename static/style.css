@@ -43,12 +43,13 @@ h2, .row, .btn{
     align-items: center;
 }
 
-.row input{
+.row input, select{
     border: none;
     padding: 10px;
     outline: none;
     font-size: 20px;
     background-color: transparent;
+    width: 100%;
 }
 
 button{
@@ -109,9 +110,11 @@ form{
     width: 100vw;
     text-align: center;
     opacity: .2;
+    z-index: -100;
 }
 .logo img{
     border-radius: 50%;
+    z-index: -100;
 }
 
 /* Dashboard */
@@ -199,7 +202,7 @@ nav .nav ul{
     height: 70vh;
     margin: 10px;
     padding: 10px;
-    /* z-index: 1000; */
+    z-index: 100;
 }
 
 .body-content .body .cards{
@@ -207,6 +210,7 @@ nav .nav ul{
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
+    z-index: 1000;
 }
 
 .body-content .body .card{
@@ -225,7 +229,7 @@ nav .nav ul{
 
 .cards .fa-users, .fa-money, .fa-user, .fa-list, .fa-user-circle, 
 .nav .fa-users, .fa-money, .fa-user, .fa-lock, .fa-id-card,
-.fa-building, .fa-id-badge, .fa-calendar, .fa-phone, .fa-envelope{
+.fa-building, .fa-id-badge, .fa-calendar, .fa-phone, .fa-envelope, .fa-check, .fa-print{
     background-color: rgba(2, 96, 2, 0.555);
     color: #fff;
     padding: 20px;
@@ -252,14 +256,6 @@ nav .nav ul{
     margin: 200px 0 30px 10px;
 } */
 
-td select{
-    background-color: red;
-    padding: 10px 20px 10px 20px;
-    border: none;
-    font-size: 20px;
-    border-radius: 7px;
-}
-
 thead{
     background-color: rgb(133, 132, 132);
 }
@@ -268,4 +264,28 @@ table, tbody, thead, th, td{
     border: 1px solid rgb(197, 197, 197);
     border-collapse: collapse;
     padding: 10px 30px 10px 30px;
+}
+
+.form{
+    z-index: 100;
+    height: 50vh;
+    overflow-x: hidden;
+    width: 20%;
+}
+
+.fa-trash{
+    background-color: red;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.fa-close{
+    background-color: rgba(170, 11, 11, 0.555);
+    color: #fff;
+    padding: 20px;
 }
