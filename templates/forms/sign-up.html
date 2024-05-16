@@ -16,42 +16,45 @@
             </div>
         </div>
         <h2>SIGN UP</h2>
+        <div class="alert-danger"></div>
+        <div class="alert-success"></div>
         <div class="form-signUp">
-            <form action="" method="post">
+            <form method="post" id="signup">
+                {% csrf_token %}
                 <div class="row">
-                    <input type="text" name="" id="" placeholder="Enter your Full Name" required>
+                    <input type="text" name="fullname" id="fullname" placeholder="Enter your Full Name" required>
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="row">
-                    <input type="text" name="" id="" placeholder="Enter your Matric No." required>
+                    <input type="text" name="m_no" id="m_no" placeholder="Enter your Matric No." required>
                     <i class="fa fa-id-card"></i>
                 </div>
                 <div class="row">
-                    <input type="text" name="" id="" placeholder="Enter your Department" required>
+                    <input type="text" name="department" id="department" placeholder="Enter your Department" required>
                     <i class="fa fa-building"></i>
                 </div>
                 <div class="row">
-                    <input type="text" name="" id="" placeholder="Enter your Jamb No." required>
+                    <input type="text" name="jamb_no" id="jamb_no" placeholder="Enter your Jamb No." required>
                     <i class="fa fa-id-badge"></i>
                 </div>
+                {% comment %} <div class="row">
+                    <input type="text" name="date_now" id="date_now" placeholder="Current Date"  required>
+                    <i class="fa fa-calendar"></i>
+                </div> {% endcomment %}
                 <div class="row">
-                    <input type="text" name="" id="" placeholder="Current Date"  required>
+                    <input type="number" name="year_admitted" id="year_admitted" placeholder="Year Admitted" required>
                     <i class="fa fa-calendar"></i>
                 </div>
                 <div class="row">
-                    <input type="number" name="" id="" placeholder="Year Admitted" required>
-                    <i class="fa fa-calendar"></i>
-                </div>
-                <div class="row">
-                    <input type="text" name="" id="" placeholder="Enter your Phone No." required>
+                    <input type="text" name="phone_number" id="phone_number" placeholder="Enter your Phone No." required>
                     <i class="fa fa-phone"></i>
                 </div>
                 <div class="row">
-                    <input type="password" name="" id="" placeholder="Enter your Password" required>
+                    <input type="password" name="password" id="password" placeholder="Enter your Password" required>
                     <i class="fa fa-lock"></i>
                 </div>
                 <div class="row">
-                    <input type="password" name="" id="" placeholder="Confirm your Password" required>
+                    <input type="password" name="comfirm_password" id="comfirm_password" placeholder="Confirm your Password" required>
                     <i class="fa fa-lock"></i>
                 </div>
                 <div class="btn">
@@ -67,5 +70,67 @@
             </form>
         </div>
     </div>
+
+    <script src="{% static 'js/JQ.js' %}"></script>
+    <script>
+        // ajax
+        {% comment %} $(document).on('submit', '#signup', function (e){
+            e.preventDefault();
+            var green = $(".alert-success");
+            var red = $(".alert-danger");
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: '/signup/',
+                data: formData,
+                success: function (response){
+                    var success = response['success'];
+                    if(success){
+                        // NORMAL ALERT warning, error, success
+                        red.removeClass("block");
+                        green.html('');
+                        green.addClass("block");
+                        green.append(response['message']);
+                        window.location.href = '/';
+                    }else{
+                        green.removeClass("block");
+                        red.html('');
+                        red.addClass("block");
+                        red.append(response['message']);
+                    }
+                }
+            });
+        }); {% endcomment %}
+
+        $(document).on('submit', '#signup', function (e){
+            e.preventDefault();
+            var green = $(".alert-success");
+            var red = $(".alert-danger");
+            var formData = new FormData(this); // Pass 'this' instead of $(this)[0]
+            $.ajax({
+                type: 'POST',
+                url: '/signup/',
+                data: formData,
+                processData: false, // Ensure data is not processed for FormData
+                contentType: false, // Ensure proper content type for FormData
+                success: function (response){
+                    var success = response['success'];
+                    if(success){
+                        // NORMAL ALERT warning, error, success
+                        red.removeClass("block");
+                        green.html('');
+                        green.addClass("block");
+                        green.append(response['message']);
+                        window.location.href = '/';
+                    }else{
+                        green.removeClass("block");
+                        red.html('');
+                        red.addClass("block");
+                        red.append(response['message']);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
