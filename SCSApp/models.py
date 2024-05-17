@@ -26,4 +26,12 @@ class Clearance(models.Model):
     def __str__(self):
         return self.student
 
+class Staff(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=100, blank=True)
+    email = models.EmailField(max_length=100, blank=True)
+    role = models.EmailField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.email
 

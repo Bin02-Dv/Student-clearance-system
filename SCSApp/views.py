@@ -1,11 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth.models import User, auth
 from .models import *
-from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+
 def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            response_msg = 'Login Successful....'
+            return JsonResponse({'success': True, 'message': response_msg})
+        else:
+            response_msg = 'Invalid Login Credentials!!!'
+            return JsonResponse({'success': False, 'message': response_msg})
     return render(request, 'forms/login.html')
 
 def sign_up(request):
@@ -20,7 +37,7 @@ def sign_up(request):
         password = request.POST['password']
         comfirm_password = request.POST['comfirm_password']
 
-        if StudentProfile.objects.filter(matric_no=m_no).exists():
+        if User.objects.filter(matric_no=m_no).exists():
             response_msg = 'Maric Number already exist!!'
             return JsonResponse({'success': False, 'message': response_msg})
         elif comfirm_password != password:
@@ -39,35 +56,74 @@ def sign_up(request):
             return JsonResponse({'success': True, 'message': response_msg})
     return render(request, 'forms/sign-up.html')
 
+@login_required(login_url='/')
 def dashboard(request):
     return render(request, 'dashboard/dashboard.html')
 
+@login_required(login_url='/')
 def user_management(request):
     return render(request, 'dashboard/user-management.html')
 
+@login_required(login_url='/')
 def add_user(request):
+    if request.method == 'POST':
+        fullname = request.POST['fullname']
+        email = request.POST['email']
+        username = request.POST['username']
+        role = request.POST['role']
+        password = request.POST['password']
+        comfirm_password = request.POST['comfirm_password']
+
+        if User.objects.filter(email=email).exists():
+            response_msg = 'Email already exist!!'
+            return JsonResponse({'success': False, 'message': response_msg})
+        elif User.objects.filter(username=username).exists():
+            response_msg = 'Username already exist!!'
+            return JsonResponse({'success': False, 'message': response_msg})
+        elif comfirm_password != password:
+            response_msg = 'Password and comfirm password missed match'
+            return JsonResponse({'success': False, 'message': response_msg})
+        else:
+            new_user = User.objects.create(username=username, password=password, is_staff=True, email=email)
+            new_user.save()
+            get_user = User.objects.get(username=username)
+            new_staff = Staff.objects.create(
+                fullname=fullname.capitalize(), email=email, user=get_user,
+                role=role
+            )
+            new_staff.save()
+            response_msg = 'Staff Added Successful...'
+            return JsonResponse({'success': True, 'message': response_msg})
     return render(request, 'dashboard/add-user.html')
 
+@login_required(login_url='/')
 def user_record(request):
     return render(request, 'dashboard/user-record.html')
 
+@login_required(login_url='/')
 def student_management(request):
     return render(request, 'dashboard/student-management.html')
 
+@login_required(login_url='/')
 def student_record(request):
     return render(request, 'dashboard/student-record.html')
 
+@login_required(login_url='/')
 def cleared_student(request):
     return render(request, 'dashboard/cleared-student.html')
 
+@login_required(login_url='/')
 def uncleared_student(request):
     return render(request, 'dashboard/uncleared-student.html')
 
+@login_required(login_url='/')
 def clearance(request):
     return render(request, 'dashboard/clearance.html')
 
+@login_required(login_url='/')
 def student_clearance(request):
     return render(request, 'dashboard/student-clearance.html')
 
+@login_required(login_url='/')
 def change_password(request):
     return render(request, 'dashboard/change-password.html')

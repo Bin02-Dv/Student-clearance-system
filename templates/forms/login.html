@@ -16,14 +16,17 @@
             </div>
         </div>
         <h2>LOGIN</h2>
+        <div class="alert-danger"></div>
+        <div class="alert-success"></div>
         <div class="form">
-            <form action="" method="post">
+            <form method="post" id="login">
+                {% csrf_token %}
                 <div class="row">
-                    <input type="text" name="" id="" placeholder="Enter your username">
+                    <input type="text" name="username" id="username" placeholder="Enter your username">
                     <i class="fa fa-envelope"></i>
                 </div>
                 <div class="row">
-                    <input type="password" name="" id="" placeholder="Enter your Password">
+                    <input type="password" name="password" id="password" placeholder="Enter your Password">
                     <i class="fa fa-lock"></i>
                 </div>
                 <div class="btn">
@@ -40,5 +43,38 @@
             </form>
         </div>
     </div>
+
+    <script src="{% static 'js/JQ.js' %}"></script>
+    <script>
+        $(document).on('submit', '#login', function (e){
+            e.preventDefault();
+            var green = $(".alert-success");
+            var red = $(".alert-danger");
+            var formData = new FormData(this); // Pass 'this' instead of $(this)[0]
+            $.ajax({
+                type: 'POST',
+                url: '/',
+                data: formData,
+                processData: false, // Ensure data is not processed for FormData
+                contentType: false, // Ensure proper content type for FormData
+                success: function (response){
+                    var success = response['success'];
+                    if(success){
+                        // NORMAL ALERT warning, error, success
+                        red.removeClass("block");
+                        green.html('');
+                        green.addClass("block");
+                        green.append(response['message']);
+                        window.location.href = '/dashboard';
+                    }else{
+                        green.removeClass("block");
+                        red.html('');
+                        red.addClass("block");
+                        red.append(response['message']);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

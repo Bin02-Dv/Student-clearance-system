@@ -55,7 +55,7 @@
                 <ul>
                     <li>
                         <i class="fa fa-power-off">
-                            &nbsp;<a href="">Logout</a>
+                            &nbsp;<a href="/logout">Logout</a>
                         </i>
                     </li>
                 </ul>
@@ -68,18 +68,21 @@
                         <h2>Dashboard</h2>
                     </a>
                     <h2>ADD USER</h2>
+                    <div class="alert-danger"></div>
+                    <div class="alert-success"></div>
                     <div class="form">
-                        <form action="" method="post" class="form-data">
+                        <form method="post" class="form-data" id="add_user">
+                            {% csrf_token %}
                             <div class="row">
-                                <input type="text" name="" id="" placeholder="Full Name" required>
+                                <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="row">
-                                <input type="email" name="" id="" placeholder="Email..." required>
+                                <input type="email" name="email" id="email" placeholder="Email..." required>
                                 <i class="fa fa-envelope"></i>
                             </div>
                             <div class="row">
-                                <select name="" id="" required>
+                                <select name="role" id="role" required>
                                     <option value="">Select Role</option>
                                     <option value="Registrer">Registrer</option>
                                     <option value="Bursary">Bursary</option>
@@ -90,11 +93,15 @@
                                 <i class="fa fa-user-circle"></i>
                             </div>
                             <div class="row">
-                                <input type="password" name="" id="" placeholder="Enter a Password" required>
+                                <input type="text" name="username" id="username" placeholder="Username..." required>
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="row">
+                                <input type="password" name="password" id="password" placeholder="Enter a Password" required>
                                 <i class="fa fa-lock"></i>
                             </div>
                             <div class="row">
-                                <input type="password" name="" id="" placeholder="Confirm a Password" required>
+                                <input type="password" name="comfirm_password" id="comfirm_password" placeholder="Confirm a Password" required>
                                 <i class="fa fa-lock"></i>
                             </div>
                             <div class="btn">
@@ -113,5 +120,38 @@
     </div>
 
     <script src="{% static 'js/script.js' %}"></script>
+
+    <script src="{% static 'js/JQ.js' %}"></script>
+    <script>
+        $(document).on('submit', '#add_user', function (e){
+            e.preventDefault();
+            var green = $(".alert-success");
+            var red = $(".alert-danger");
+            var formData = new FormData(this); // Pass 'this' instead of $(this)[0]
+            $.ajax({
+                type: 'POST',
+                url: '/add-user/',
+                data: formData,
+                processData: false, // Ensure data is not processed for FormData
+                contentType: false, // Ensure proper content type for FormData
+                success: function (response){
+                    var success = response['success'];
+                    if(success){
+                        // NORMAL ALERT warning, error, success
+                        red.removeClass("block");
+                        green.html('');
+                        green.addClass("block");
+                        green.append(response['message']);
+                        // window.location.href = '/add-user';
+                    }else{
+                        green.removeClass("block");
+                        red.html('');
+                        red.addClass("block");
+                        red.append(response['message']);
+                    }
+                }
+            });
+        });
+    </script>
 </body> 
 </html>

@@ -73,35 +73,6 @@
 
     <script src="{% static 'js/JQ.js' %}"></script>
     <script>
-        // ajax
-        {% comment %} $(document).on('submit', '#signup', function (e){
-            e.preventDefault();
-            var green = $(".alert-success");
-            var red = $(".alert-danger");
-            var formData = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: '/signup/',
-                data: formData,
-                success: function (response){
-                    var success = response['success'];
-                    if(success){
-                        // NORMAL ALERT warning, error, success
-                        red.removeClass("block");
-                        green.html('');
-                        green.addClass("block");
-                        green.append(response['message']);
-                        window.location.href = '/';
-                    }else{
-                        green.removeClass("block");
-                        red.html('');
-                        red.addClass("block");
-                        red.append(response['message']);
-                    }
-                }
-            });
-        }); {% endcomment %}
-
         $(document).on('submit', '#signup', function (e){
             e.preventDefault();
             var green = $(".alert-success");
@@ -109,7 +80,7 @@
             var formData = new FormData(this); // Pass 'this' instead of $(this)[0]
             $.ajax({
                 type: 'POST',
-                url: '/signup/',
+                url: '/sign-up/',
                 data: formData,
                 processData: false, // Ensure data is not processed for FormData
                 contentType: false, // Ensure proper content type for FormData
