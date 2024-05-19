@@ -37,14 +37,14 @@ def sign_up(request):
         password = request.POST['password']
         comfirm_password = request.POST['comfirm_password']
 
-        if User.objects.filter(matric_no=m_no).exists():
+        if User.objects.filter(username=m_no).exists():
             response_msg = 'Maric Number already exist!!'
             return JsonResponse({'success': False, 'message': response_msg})
         elif comfirm_password != password:
             response_msg = 'Password and comfirm password missed match'
             return JsonResponse({'success': False, 'message': response_msg})
         else:
-            new_user = User.objects.create(username=m_no, password=password)
+            new_user = User.objects.create_user(username=m_no, password=password)
             new_user.save()
             get_user = User.objects.get(username=m_no)
             new_student = StudentProfile.objects.create(
@@ -58,14 +58,26 @@ def sign_up(request):
 
 @login_required(login_url='/')
 def dashboard(request):
-    return render(request, 'dashboard/dashboard.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/dashboard.html', context)
 
 @login_required(login_url='/')
 def user_management(request):
-    return render(request, 'dashboard/user-management.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/user-management.html', context)
 
 @login_required(login_url='/')
 def add_user(request):
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
     if request.method == 'POST':
         fullname = request.POST['fullname']
         email = request.POST['email']
@@ -84,7 +96,7 @@ def add_user(request):
             response_msg = 'Password and comfirm password missed match'
             return JsonResponse({'success': False, 'message': response_msg})
         else:
-            new_user = User.objects.create(username=username, password=password, is_staff=True, email=email)
+            new_user = User.objects.create_user(username=username, password=password, is_staff=True, email=email)
             new_user.save()
             get_user = User.objects.get(username=username)
             new_staff = Staff.objects.create(
@@ -94,36 +106,68 @@ def add_user(request):
             new_staff.save()
             response_msg = 'Staff Added Successful...'
             return JsonResponse({'success': True, 'message': response_msg})
-    return render(request, 'dashboard/add-user.html')
+    return render(request, 'dashboard/add-user.html', context)
 
 @login_required(login_url='/')
 def user_record(request):
-    return render(request, 'dashboard/user-record.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/user-record.html', context)
 
 @login_required(login_url='/')
 def student_management(request):
-    return render(request, 'dashboard/student-management.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/student-management.html', context)
 
 @login_required(login_url='/')
 def student_record(request):
-    return render(request, 'dashboard/student-record.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/student-record.html', context)
 
 @login_required(login_url='/')
 def cleared_student(request):
-    return render(request, 'dashboard/cleared-student.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/cleared-student.html', context)
 
 @login_required(login_url='/')
 def uncleared_student(request):
-    return render(request, 'dashboard/uncleared-student.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/uncleared-student.html', context)
 
 @login_required(login_url='/')
 def clearance(request):
-    return render(request, 'dashboard/clearance.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/clearance.html', context)
 
 @login_required(login_url='/')
 def student_clearance(request):
-    return render(request, 'dashboard/student-clearance.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/student-clearance.html', context)
 
 @login_required(login_url='/')
 def change_password(request):
-    return render(request, 'dashboard/change-password.html')
+    current_user = User.objects.get(username=request.user)
+    context = {
+        "user": current_user,
+    }
+    return render(request, 'dashboard/change-password.html', context)

@@ -28,24 +28,30 @@
                 <div>
                     <span id="close">X</span>
                 </div>
+                {% if user.is_superuser %}
                 <ul>
                     <li>
                         <i class="fa fa-user"></i>
                         <a href="/user-management">User Management</a>
                     </li>
                 </ul>
+                {% endif %}
+                {% if user.is_staff and not user.is_superuser %}
                 <ul>
                     <li>
                         <i class="fa fa-users"></i>
                         <a href="/student-management">Student Management</a>
                     </li>
                 </ul>
+                {% endif %}
+                {% if not user.is_superuser %}
                 <ul>
                     <li>
                         <i class="fa fa-check"></i>
                         <a href="/clearance">Clearance</a>
                     </li>
                 </ul>
+                {% endif %}
                 <ul>
                     <li>
                         <i class="fa fa-lock"></i>
@@ -67,6 +73,7 @@
                     <a href="/dashboard">
                         <h2>Dashboard</h2>
                     </a>
+                    {% if user.is_superuser or user.is_staff %}
                     <div class="cards">
                         <div class="card">
                             <i class="fa fa-users"></i>
@@ -85,6 +92,7 @@
                             </span>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="mom-logo dash">
