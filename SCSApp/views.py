@@ -49,9 +49,16 @@ def sign_up(request):
             get_user = User.objects.get(username=m_no)
             new_student = StudentProfile.objects.create(
                 full_name=fullname.capitalize(), matric_no=m_no, department=department.capitalize(), jamb_no=jamb_no,
-                year_addmitted=year_admitted, phone_number=phone_number, cleared=False, user=get_user
+                year_addmitted=year_admitted, phone_number=phone_number, user=get_user
             )
             new_student.save()
+            stu = StudentProfile.objects.get(matric_no=m_no)
+            new_clearance_info = Clearance.objects.create(student=stu, clearance_for='Library', cleared=False)
+            new_clearance_info = Clearance.objects.create(student=stu, clearance_for='H.O.D', cleared=False)
+            new_clearance_info = Clearance.objects.create(student=stu, clearance_for='Hostel', cleared=False)
+            new_clearance_info = Clearance.objects.create(student=stu, clearance_for='Bursary', cleared=False)
+            new_clearance_info = Clearance.objects.create(student=stu, clearance_for='Registrer', cleared=False)
+            new_clearance_info.save()
             response_msg = 'Signup Completed Successful...'
             return JsonResponse({'success': True, 'message': response_msg})
     return render(request, 'forms/sign-up.html')
@@ -111,8 +118,10 @@ def add_user(request):
 @login_required(login_url='/')
 def user_record(request):
     current_user = User.objects.get(username=request.user)
+    staffs = Staff.objects.all().order_by('-id')
     context = {
         "user": current_user,
+        "staffs": staffs,
     }
     return render(request, 'dashboard/user-record.html', context)
 
@@ -126,25 +135,39 @@ def student_management(request):
 
 @login_required(login_url='/')
 def student_record(request):
+    students = StudentProfile.objects.all().order_by('-id')
     current_user = User.objects.get(username=request.user)
     context = {
         "user": current_user,
+        "students": students,
     }
     return render(request, 'dashboard/student-record.html', context)
 
 @login_required(login_url='/')
 def cleared_student(request):
     current_user = User.objects.get(username=request.user)
+    staff = Staff.objects.filter(user=current_user)
+    staff_role = ''
+    for role in staff:
+        staff_role = role.role
+    students = Clearance.objects.filter(cleared=True, clearance_for=staff_role)
     context = {
         "user": current_user,
+        "students": students,
     }
     return render(request, 'dashboard/cleared-student.html', context)
 
 @login_required(login_url='/')
 def uncleared_student(request):
     current_user = User.objects.get(username=request.user)
+    staff = Staff.objects.filter(user=current_user)
+    staff_role = ''
+    for role in staff:
+        staff_role = role.role
+    students = Clearance.objects.filter(cleared=False, clearance_for=staff_role)
     context = {
         "user": current_user,
+        "students": students,
     }
     return render(request, 'dashboard/uncleared-student.html', context)
 

@@ -85,17 +85,19 @@
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
+                                    {% for staff in staffs %}
                                     <tr>
-                                        <td>1</td>
-                                        <td>Alamin Bin Ahmad</td>
-                                        <td>alaminbinahmad78@gmail.com</td>
-                                        <td>Admin</td>
+                                        <td>STAFF-{{staff.id}}</td>
+                                        <td>{{staff.fullname}}</td>
+                                        <td>{{staff.email}}</td>
+                                        <td>{{staff.role}}</td>
                                         <td>
-                                            <a href="">
+                                            <a href="/staff-delete/{{staff.user.id}}">
                                                 <i class="fa fa-trash"></i>
                                             </a><br>
                                         </td>
                                     </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>

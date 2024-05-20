@@ -84,19 +84,24 @@
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
+                                    {% if students %}
+                                    {% for stu in students %}
                                     <tr>
-                                        <td>1</td>
-                                        <td>Libary</td>
-                                        <td>CSE/20/0137</td>
+                                        <td>CL-{{stu.id}}</td>
+                                        <td>{{stu.clearance_for}}</td>
+                                        <td>{{stu.student.matric_no}}</td>
                                         <td>
                                             <a href="">
                                                 <i class="fa fa-check"></i>
                                             </a><br>
-                                            <a href="">
-                                                <i class="fa fa-print"></i>
-                                            </a><br>
                                         </td>
                                     </tr>
+                                    {% endfor %}
+                                    {% else %}
+                                    <tr>
+                                        <td>No cleared Students</td>
+                                    </tr>
+                                    {% endif %}
                                 </tbody>
                             </table>
                         </div>

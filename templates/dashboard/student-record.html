@@ -89,21 +89,23 @@
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
+                                    {% for stu in students %}
                                     <tr>
-                                        <td>1</td>
-                                        <td>Alamin Bin Ahmad</td>
-                                        <td>CSE/20/0131</td>
-                                        <td>Software Engineering</td>
-                                        <td>AC22337788</td>
-                                        <td>5/4/2024</td>
-                                        <td>5/4/2019</td>
-                                        <td>07067156212</td>
+                                        <td>STU-{{stu.id}}</td>
+                                        <td>{{stu.full_name}}</td>
+                                        <td>{{stu.matric_no}}</td>
+                                        <td>{{stu.department}}</td>
+                                        <td>{{stu.jamb_no}}</td>
+                                        <td>{{stu.current_date}}</td>
+                                        <td>{{stu.year_addmitted}}</td>
+                                        <td>{{stu.phone_number}}</td>
                                         <td>
-                                            <a href="">
+                                            <a href="/stu-delete/{{stu.user.id}}">
                                                 <i class="fa fa-trash"></i>
                                             </a><br>
                                         </td>
                                     </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
