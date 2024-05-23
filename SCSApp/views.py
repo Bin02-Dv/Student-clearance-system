@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User, auth
 from .models import *
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 
@@ -66,8 +67,12 @@ def sign_up(request):
 @login_required(login_url='/')
 def dashboard(request):
     current_user = User.objects.get(username=request.user)
+    students = StudentProfile.objects.count()
+    staffs = Staff.objects.count()
     context = {
         "user": current_user,
+        "total_student": students,
+        "total_staff": staffs,
     }
     return render(request, 'dashboard/dashboard.html', context)
 
@@ -182,8 +187,11 @@ def clearance(request):
 @login_required(login_url='/')
 def student_clearance(request):
     current_user = User.objects.get(username=request.user)
+    stu = StudentProfile.objects.get(user=current_user)
+    stu_clearance = Clearance.objects.filter(student=stu)
     context = {
         "user": current_user,
+        "clearance": stu_clearance,
     }
     return render(request, 'dashboard/student-clearance.html', context)
 
@@ -194,3 +202,21 @@ def change_password(request):
         "user": current_user,
     }
     return render(request, 'dashboard/change-password.html', context)
+
+def stu_delete(request, id):
+    student = User.objects.get(id=id)
+    student.delete()
+    response_msg = 'Student Deleted Successfully..'
+    messages.success(request, response_msg)
+    return redirect("student-record")
+
+def clear_a_student(request, id):
+    student = Clearance.objects.get(id=id)
+    student.cleared = True
+    student.save()
+    response_msg = f'Student clearance for {student.clearance_for} is successful..'
+    messages.success(request, response_msg)
+    return redirect('uncleared-student')
+
+def clearance_report(request):
+    return render(request, 'clearance-report.html')

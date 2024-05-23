@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    font-family: sans-serif;
+}
+
+h1{
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120rem;
+    overflow-x: scroll;
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+}
+
+.heading img{
+    height: 100px;
+    width: 100px;
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.clearance{
+    box-shadow: 0 .5rem 1rem rgba(0,0,0, .3);
+    margin: 20px 10px 20px 10px;
+    width: 120rem;
+}
+
+.section-1 div{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section-1{
+    padding: 10px;
+    border-bottom: 2px solid rgb(210, 209, 209);
+}
+
+.section-1 div span:first-child{
+    border: none;
+    width: 10%;
+}
+
+.section-1 span{
+    font-size: 20px;
+    border-bottom: 1px dotted rgb(112, 111, 111);
+    width: 100%;
+}
+.sec-3 span{
+    font-size: 20px;
+    border-bottom: 1px dotted rgb(112, 111, 111);
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+.section-2{
+    padding: 10px;
+    border-bottom: 2px solid rgb(210, 209, 209);
+}
+
+.section-2 h5{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-2 .p{
+    display: flex;
+    justify-content: space-between;
+}
+
+.section-2 .p div{
+    width: 100%;
+}
+
+.section-2 .p div span:first-child{
+    border: none;
+}
+
+.section-2 .p div span{
+    border-bottom: 1px dotted rgb(210, 209, 209);
+    font-size: 20px;
+}

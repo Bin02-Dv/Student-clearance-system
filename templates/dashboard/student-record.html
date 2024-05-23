@@ -67,6 +67,11 @@
                 </ul>
             </div>
         </nav>
+        <style>
+            .alert-success{
+                display: block;
+            }
+        </style>
         <section class="body-section">
             <div class="body-content">
                 <div class="body">
@@ -76,6 +81,11 @@
                     <h2>STUDENT RECORDS</h2>
                     <div class="cards">
                         <div class="table">
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert-success">{{message}}</div>
+                            {% endfor %}
+                            {% endif %}
                             <table>
                                 <thead>
                                     <th>S/N</th>
