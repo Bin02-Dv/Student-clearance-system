@@ -12,13 +12,17 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 120rem;
+    width: 100vw;
     overflow-x: scroll;
 }
 
 .heading{
     display: flex;
     align-items: center;
+}
+
+.heading h1{
+    text-align: center;
 }
 
 .heading img{
@@ -35,7 +39,7 @@ nav{
 .clearance{
     box-shadow: 0 .5rem 1rem rgba(0,0,0, .3);
     margin: 20px 10px 20px 10px;
-    width: 120rem;
+    width: 100vw;
 }
 
 .section-1 div{
@@ -58,7 +62,7 @@ nav{
 .section-1 span{
     font-size: 20px;
     border-bottom: 1px dotted rgb(112, 111, 111);
-    width: 100%;
+    width: 70%;
 }
 .sec-3 span{
     font-size: 20px;

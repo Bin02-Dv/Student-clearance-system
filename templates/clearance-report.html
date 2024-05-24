@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clearance Report for - </title>
+    <title>Clearance Report for - {{user.full_name}} </title>
     <link rel="stylesheet" href="{% static 'clearance-report.css' %}">
 </head>
 <body>
@@ -22,36 +22,32 @@
 
             <div class="section-1">
                 <div>
-                    <span>Surname:</span>
-                    <span></span>
+                    <b><span>Surname:</span></b>
+                    <span>{{user.full_name}}</span>
                 </div>
                 <div>
-                    <span>Other Names:</span>
-                    <span></span>
+                    <b><span>Matric No.:</span></b>
+                    <span>{{user.matric_no}}</span>
                 </div>
                 <div>
-                    <span>Matric No.:</span>
-                    <span></span>
+                    <b><span>Department.:</span></b>
+                    <span>{{user.department}}</span>
                 </div>
                 <div>
-                    <span>Department.:</span>
-                    <span></span>
+                    <b><span>Jamb No.:</span></b>
+                    <span>{{user.jamb_no}}</span>
                 </div>
                 <div>
-                    <span>Jamb No.:</span>
-                    <span></span>
+                    <b><span>Date:</span></b>
+                    <span>{{user.current_date}}</span>
                 </div>
                 <div>
-                    <span>Date:</span>
-                    <span></span>
+                    <b><span>Year Admitted:</span></b>
+                    <span>{{user.year_addmitted}}</span>
                 </div>
                 <div>
-                    <span>Year Admitted:</span>
-                    <span></span>
-                </div>
-                <div>
-                    <span>Phone Number:</span>
-                    <span></span>
+                    <b><span>Phone Number:</span></b>
+                    <span>{{user.phone_number}}</span>
                 </div>
             </div>
             <div class="section-2">
@@ -60,12 +56,50 @@
                 </h5>
                 <div class="p">
                     <div>
-                        <span>Library:</span>
-                        <span></span>
+                        <b><span>Library:</span></b>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>Cleared</span>
                     </div>
                     <div>
-                        <span>Name:</span>
-                        <span></span>
+                        <b><span>Name:</span></b>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>{{library}}</span>
+                    </div>
+                </div>
+                <div class="p">
+                    <div>
+                        <b><span>H.O.D:</span></b>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>Cleared</span>
+                    </div>
+                    <div>
+                        <b><span>Name:</span></b>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>{{h_o_d}}</span>
+                    </div>
+                </div>
+                <div class="p">
+                    <div>
+                        <b><span>Hostel:</span></b>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>Cleared</span>
+                    </div>
+                    <div>
+                        <b><span>Name:</span></b>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>{{hostel}}</span>
+                    </div>
+                </div>
+                <div class="p">
+                    <div>
+                        <b><span>Bursary:</span></b>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>Cleared</span>
+                    </div>
+                    <div>
+                        <b><span>Name:</span></b>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>{{bursary}}</span>
                     </div>
                 </div>
             </div>
@@ -78,10 +112,16 @@
                 </div>
                 <div>
                     <span>STUDENT</span>
-                    <span></span>
+                    <span>{{user.full_name}}</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        window.onload = function() {
+            print();
+        };
+    </script>
 </body>
 </html>

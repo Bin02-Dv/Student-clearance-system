@@ -58,7 +58,6 @@ def sign_up(request):
             new_clearance_info = Clearance.objects.create(student=stu, clearance_for='H.O.D', cleared=False)
             new_clearance_info = Clearance.objects.create(student=stu, clearance_for='Hostel', cleared=False)
             new_clearance_info = Clearance.objects.create(student=stu, clearance_for='Bursary', cleared=False)
-            new_clearance_info = Clearance.objects.create(student=stu, clearance_for='Registrer', cleared=False)
             new_clearance_info.save()
             response_msg = 'Signup Completed Successful...'
             return JsonResponse({'success': True, 'message': response_msg})
@@ -188,16 +187,38 @@ def clearance(request):
 def student_clearance(request):
     current_user = User.objects.get(username=request.user)
     stu = StudentProfile.objects.get(user=current_user)
+    uncleared_list = []
+    cleared = False
     stu_clearance = Clearance.objects.filter(student=stu)
+    for sta in stu_clearance:
+        if not sta.cleared:
+            uncleared_list.append(sta)
+    if len(uncleared_list) == 0:
+        cleared = True
+    else:
+        cleared = False
     context = {
         "user": current_user,
         "clearance": stu_clearance,
+        "status": cleared,
     }
     return render(request, 'dashboard/student-clearance.html', context)
 
 @login_required(login_url='/')
 def change_password(request):
     current_user = User.objects.get(username=request.user)
+    if request.method == 'POST':
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        if confirm_password != password:
+            response_msg = 'Password and Confirm Password missed matched!!'
+            return JsonResponse({'success': False, 'message': response_msg})
+        else:
+            current_user.set_password(password)
+            current_user.save()
+            response_msg = 'Password Updated successfully..'
+            return JsonResponse({'success': True, 'message': response_msg})
     context = {
         "user": current_user,
     }
@@ -219,4 +240,26 @@ def clear_a_student(request, id):
     return redirect('uncleared-student')
 
 def clearance_report(request):
-    return render(request, 'clearance-report.html')
+    current_user = StudentProfile.objects.get(user=request.user)
+    staff = Staff.objects.all()
+    h_o_d = ''
+    library = ''
+    hostel = ''
+    bursary = ''
+    for s in staff:
+        if s.role == 'H.O.D':
+            h_o_d = s.fullname
+        elif s.role == 'Library':
+            library = s.fullname
+        elif s.role == 'Bursary':
+            bursary = s.fullname
+        elif s.role == 'Hostel':
+            hostel = s.fullname
+    context = {
+        "user": current_user,
+        "h_o_d": h_o_d,
+        "library": library,
+        "hostel": hostel,
+        "bursary": bursary,
+    }
+    return render(request, 'clearance-report.html', context)

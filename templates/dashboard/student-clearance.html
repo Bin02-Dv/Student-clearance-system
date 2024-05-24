@@ -18,7 +18,7 @@
                 <li>Alqalam S.C</li>
             </ul>
             <ul>
-                <li>Username</li>
+                <li>{{user.username}}</li>
                 <li><i class="fa fa-user-circle"></i></li>
             </ul>
         </header>
@@ -100,11 +100,19 @@
                                         {% endif %}
                                     </tr>
                                     {% endfor %}
+                                    {% if status %}
                                     <td>
-                                        <a href="">
+                                        <a href="/clearance-report">
                                             <i class="fa fa-print"></i>
                                         </a><br>
                                     </td>
+                                    {% else %}
+                                    <td>
+                                        <a href="#">
+                                            <i class="fa fa-close"></i>
+                                        </a><br>
+                                    </td>
+                                    {% endif %}
                                 </tbody>
                             </table>
                         </div>
